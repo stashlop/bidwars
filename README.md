@@ -100,9 +100,6 @@ If you want CI, add a GitHub Actions workflow that runs `flutter analyze` and `f
 Contributing
 - Open issues and PRs against this repository. For code style, follow existing patterns (Riverpod, go_router, and Flutter recommended best practices).
 
-License
-- See the repository owner for license and contribution guidelines. If you want an MIT or other license file added, I can create it.
-
 Support
 - For running the app locally you need a working Flutter SDK and a Firebase project for full functionality (auth, database, functions).
 
