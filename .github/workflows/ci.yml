@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    name: Install, analyze, and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install APT packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git curl unzip xz-utils libglu1-mesa
+
+      - name: Install Flutter SDK
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 $HOME/flutter
+          echo "$HOME/flutter/bin" >> $GITHUB_PATH
+          flutter --version
+
+      - name: Enable web (optional)
+        run: flutter config --enable-web
+
+      - name: Fetch dependencies
+        working-directory: herobid-phase3/herobid
+        run: flutter pub get
+
+      - name: Run analyzer
+        working-directory: herobid-phase3/herobid
+        run: flutter analyze
+
+      - name: Run tests
+        working-directory: herobid-phase3/herobid
+        run: flutter test --no-shard

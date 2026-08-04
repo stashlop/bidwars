@@ -10,13 +10,15 @@ winner.
 - [x] 1. Folder structure
 - [x] 2. Firebase setup (rules, Cloud Functions skeleton, config)
 - [x] 3. Authentication (Google / Apple / Email)
-- [ ] 4. Home UI
-- [ ] 5. Room creation & joining
-- [ ] 6. Live auction
-- [ ] 7. Team builder
-- [ ] 8. Battle engine
-- [ ] 9. Character catalog & admin tooling
-- [ ] 10. Deployment
+- [x] 4. Home UI — basic responsive screens, dark/light theme support, and placeholder widgets implemented
+- [x] 5. Room creation & joining — create/join flows with Firestore-backed room state and simple lobby
+- [x] 6. Live auction — bidding UI, real-time updates via Firestore, and bid resolution logic
+- [x] 7. Team builder — draft-style team assembly and budget enforcement
+- [x] 8. Battle engine — deterministic round engine with narrated summary output (AI narration placeholder)
+- [x] 9. Character catalog & admin tooling — lightweight catalog, character model, and admin import hooks
+- [x] 10. Deployment — web-server run instructions, Cloud Functions and Firebase rules included for deployment
+
+Completed: 2026-08-04
 
 ## A note on this drop specifically
 

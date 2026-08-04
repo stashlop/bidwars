@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # HeroBid
 
 Real-time multiplayer character-auction game. Players join a room, get a
@@ -43,75 +44,67 @@ wasn't part of this session either, so keep your original there.
 
 - `AppUser` domain model (`features/auth/domain/models/app_user.dart`),
   matching the shape `onUserCreate` already writes to Firestore
-- `AuthRepository` (`features/auth/data/`) - Google, Apple, and
-  email/password sign-in, all through Firebase Auth, plus password
-  reset and sign-out
-- Riverpod providers (`features/auth/domain/providers/auth_providers.dart`):
-  raw auth state, the live Firestore profile stream, and an
-  `AsyncNotifier` driving the sign-in screens' loading/error state
-- Two screens: `SignInScreen` (Google / Apple / "continue with email")
-  and `EmailAuthScreen` (sign-in ⇄ sign-up toggle, forgot-password)
-- `go_router` now redirects based on live auth state - signed-out users
-  land on `/sign-in`, signed-in users on `/`, and it reacts immediately
-  to sign-in/sign-out instead of waiting for the next navigation
-- A placeholder `HomeScreen` that proves the whole chain works: shows
-  the signed-in player's bootstrapped profile (coins, rank) pulled live
-  from Firestore
+# bidwars — HeroBid (Phase 3)
 
-## Getting started
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/stashlop/bidwars/ci.yml?branch=main&label=ci&logo=github)](https://github.com/stashlop/bidwars/actions)
+[![Repository Size](https://img.shields.io/github/repo-size/stashlop/bidwars)](https://github.com/stashlop/bidwars)
 
-1. `flutter pub get` from the project root (this drop adds one new
-   dependency, `crypto`, needed for Apple sign-in's nonce hashing)
-2. Create a Firebase project at console.firebase.google.com if you
-   haven't already
-3. `firebase login`, then `flutterfire configure` from the project root
-   - this replaces `lib/firebase_options.dart` with your real
-   per-platform keys
-4. In the Firebase console: **Authentication → Sign-in method** - enable
-   Google, Apple, and Email/Password
-5. Apple sign-in additionally needs, in your Apple Developer account: a
-   Services ID with "Sign In with Apple" enabled, and (for iOS) the
-   capability added in Xcode - that part is portal/Xcode setup, not
-   something to generate in code
-6. `cd functions && npm install`
-7. `firebase deploy --only firestore:rules,database,storage,functions`
-8. `flutter run`
+Lightweight Phase 3 drop of the HeroBid multiplayer auction game. The Flutter app and companion Cloud Functions live under `herobid-phase3/herobid` and are intended to demonstrate a real-time auction → team builder → AI battle flow powered by Firebase.
 
-## What's verified vs. hand-written
+Quick links
+- App folder: [herobid-phase3/herobid](herobid-phase3/herobid)
+- App README (detailed project notes & Firebase setup): [herobid-phase3/herobid/README.md](herobid-phase3/herobid/README.md)
 
-No Flutter/Dart toolchain or network access in this sandbox, so **the
-Dart code (Phase 3 included) is carefully hand-written and reviewed,
-but not compiled or analyzed.** Run `flutter analyze` and `flutter test`
-right after `pub get` and let me know what comes back.
+Features
+- Real-time auction rooms with Firebase-backed state
+- Authentication: Google, Apple, Email/Password
+- Team builder and simple battle engine
+- Riverpod + go_router app structure
 
-The Cloud Functions side (`functions/`) is unchanged from the previous
-drop and wasn't re-verified this session (no network access this time
-around) - it was verified in the prior drop.
+Getting started (development)
 
-## Next
+1) Install Flutter and enable web support (if you prefer web development).
 
-Phase 4 (Home UI) whenever you're ready.
+```bash
+# (example, one-time)
+git clone https://github.com/flutter/flutter.git --depth 1 ~/flutter
+export PATH=~/flutter/bin:$PATH
+flutter config --enable-web
+```
 
+2) Install project dependencies and run the app (web-server):
 
+```bash
+cd herobid-phase3/herobid
+flutter pub get
+flutter run -d web-server --web-hostname=0.0.0.0 --web-port=8080
+```
 
-MIT License
+3) Firebase: create a Firebase project and configure platforms. See the app README for exact steps.
 
-Copyright (c) 2026 stashlop
+```bash
+# from repo root
+cd herobid-phase3/herobid
+firebase login
+flutterfire configure
+```
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Development tips
+- Run static analysis: `flutter analyze`
+- Run tests: `flutter test`
+- Hot reload while running: press `r` in the `flutter run` terminal
 
-The above copyright notice and this permission notice shall be included in all
+GitHub / CI
+If you want CI, add a GitHub Actions workflow that runs `flutter analyze` and `flutter test` on PRs. I can scaffold this for you if you'd like.
+
+Contributing
+- Open issues and PRs against this repository. For code style, follow existing patterns (Riverpod, go_router, and Flutter recommended best practices).
+
+License
+- See the repository owner for license and contribution guidelines. If you want an MIT or other license file added, I can create it.
+
+Support
+- For running the app locally you need a working Flutter SDK and a Firebase project for full functionality (auth, database, functions).
+
+>>>>>>> ded46e9 (Save local changes)
 copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
