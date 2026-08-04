@@ -1,0 +1,10 @@
+# Node modules (Firebase functions)
+herobid-phase3/herobid/functions/node_modules/
+herobid-phase3/herobid/functions/package-lock.json
+
+# Flutter / Dart
+**/build/
+**/pubspec.lock
+
+# macOS
+.DS_Store
